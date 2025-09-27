@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Proclamation de Daeryn Sangvyr : Chroniques et Retour de l'Ombre</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=Cinzel:wght@400;700&family=Old+Standard+TT:wght@400;700&display=swap');
+        
+        :root {
+            --dark-abyss: #0a0a0a; /* Even darker base for body */
+            --parchment-base: #f7e7c2; /* Light beige for parchment */
+            --parchment-shade: #f0dbaf;
+            --parchment-edge-shadow: #8c7650; /* A brownish-gold for aged edges */
+            --parchment-burn: rgba(0, 0, 0, 0.2); /* For top/bottom shadow effect */
+            --deep-burgundy: #7b0f0f; /* Richer, darker red */
+            --pale-gold: #c7a76e; /* Existing gold */
+            --off-black-ink: #2b2b2b; /* Dark ink color */
+            --light-sepia-ink: #4f3a2c; /* Lighter ink tone for subheadings */
+            --black-overlay: rgba(0, 0, 0, 0.95);
+            --modal-bg: #1c1c1c; /* Darker modal background */
+            --input-border: #606060;
+            --button-hover-gold: #d8b77a;
+            --error-red: #ff4a4a;
+            --success-green: #4aff4a;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.8;
+            background-color: var(--dark-abyss); /* Very dark background */
+            color: var(--off-white); /* Default body text, but container overrides */
+            margin: 0;
+            padding: 0; /* Let container handle padding */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            /* Subtle texture for the 'void' background around the parchment */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100" height="100" fill="%230a0a0a" /><rect width="100" height="100" filter="url(%23noise)" opacity="0.1"/></svg>');
+            background-repeat: repeat;
+            background-size: 100px 100px;
+        }
+
+        .container {
+            max-width: 850px; /* Slightly narrower to fit scroll aesthetic */
+            width: calc(100% - 80px); /* Leave some margin for the dark background */
+            background-color: var(--parchment-base); /* Base parchment color */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAAr9JREFUeJzt3UFtDHEUBNADv/O32Y3zJd5BwIE1K0x/0+y4b3gBHgQIyAFCI/EAgkAECBDoAQIg03MGCBICJIIECIyXgwQSFiSApAQIgk/CgxAWiAQSiCBoKAA2oA7gQoD08BfgQuuVAbAB2AA0oOq39j2ABwAN6Gk7z4ADQBdgA+A+tGzVv6sBGBtL/l6V5d7eAgZAAxYgIGADFjLGAEIggfICRBP/tQEEsY4QBEj8CgjATkSABBICIGJIIxAICoCEICJIINcQgYBYhQiAjCAMCAggvQiAjLCEICC8BIKOEEIQQAhBIQQEEELoBSGE0AsCCCGEHAgIIYSQCkIQoRcCCCEHQgglJIIIIRACCEFgBASiXwgxEhBA5BIKQQcECGCE4AsjQAoRCBGEYAkCAhgBEyCBjAEJQEawBQmAjA0EQEaQBCcBOAgSQ+DmAECIBBI0QJgQCJBIwQpgQCIBIMu/sQQIQIIECEBAQIAECAAIwABEgAAJCgAgICEAAiIEAESAAECAgAQECECACICAgAQIEJAAEICAiwgC/u7Nq/1xVlbLduLz1O/Ldf70q1f8p0e2oTPU5q6rvd3Fevgq+0e39N9L2QyK3oz4vpvN1n0x5f2+qWwz+sB7a5y0D/e58f/mYv/fT7/7Nrv+4T5eL1T9k9z0fR1f9oP5nQ3n2/fNnv/W+h3bO50t1c+I2XG5Xn+N/Ltf/q7414w+sK+uQGv93+qX034hQzW+d9O0/P8D930lqfS5vUqj/k5W9XnrbS3P0X5j91S++rW/9b85293d40e137J6rvd/TddXbC7v7x/+n5v6p+/e8O/X8W+h/s+JbWlQ/+zY1e+n1/N++N5u/lWd/+f/+tXv/d+xXf9J4v8eS/M08+uAAAAAElFTkSuQmCC'); /* Subtle parchment texture */
+            background-repeat: repeat;
+            box-shadow: 
+                0 0 80px rgba(0, 0, 0, 0.95), /* Deep outer shadow */
+                inset 0 0 30px rgba(123, 15, 15, 0.6), /* Inner shadow for depth */
+                15px 15px 30px rgba(0,0,0,0.5), /* Drop shadow for lifted effect */
+                -15px 15px 30px rgba(0,0,0,0.5); /* Symmetrical drop shadow */
+            border: 2px solid var(--parchment-edge-shadow); /* Outer border simulating age */
+            padding: 60px 80px; /* Increased padding to resemble traditional scroll layout */
+            margin: 60px auto;
+            position: relative;
+            border-radius: 5px; /* Subtle roundness for paper edges */
+            /* Using transform to slightly curl the parchment */
+            transform: perspective(1000px) rotateX(1deg) rotateY(1deg); 
+            animation: fadeIn 2s ease-in-out;
+            z-index: 1; 
+            overflow: hidden; /* Important for hiding content beyond visual edges */
+        }
+
+        /* Top and Bottom burned/aged edge effect with pseudo-elements */
+        .container::before, .container::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Height of the aged effect zone */
+            z-index: 2; /* Above content, below actual border for effect */
+            pointer-events: none; /* Allows clicks/selection through the pseudo-elements */
+            filter: blur(2px); /* Soften the edges */
+        }
+
+        .container::before {
+            top: 0;
+            background: linear-gradient(to top, var(--parchment-burn) 0%, transparent 100%);
+            border-radius: 5px 5px 0 0;
+            box-shadow: inset 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .container::after {
+            bottom: 0;
+            background: linear-gradient(to bottom, var(--parchment-burn) 0%, transparent 100%);
+            border-radius: 0 0 5px 5px;
+            box-shadow: inset 0 -8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px) perspective(1000px) rotateX(5deg) scale(0.9); }
+            to { opacity: 1; transform: translateY(0px) perspective(1000px) rotateX(1deg) rotateY(1deg) scale(1); }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--off-black-ink); /* Text color on parchment for headings */
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 8px rgba(0,0,0,0.3); /* Softer shadow for 'ink' */
+            position: relative;
+            animation: text-glow-dark 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes text-glow-dark {
+            from { text-shadow: 0 0 5px rgba(0,0,0,0.2), 0 0 2px var(--parchment-edge-shadow); }
+            50% { text-shadow: 0 0 10px rgba(0,0,0,0.5), 0 0 4px var(--deep-burgundy); }
+            100% { text-shadow: 0 0 5px rgba(0,0,0,0.2), 0 0 2px var(--parchment-edge-shadow); }
+        }
+
+        .typewriter-text-effect { /* Renamed to avoid clash with other properties */
+            /* Handled by JS, CSS just provides visual fallback or style for when text is present */
+        }
+        
+        h1 {
+            font-size: 3em; /* Larger for primary heading */
+            text-transform: uppercase;
+            color: var(--deep-burgundy); /* Richer color for main title */
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--light-sepia-ink); /* Gentler tone for secondary headings */
+            margin-top: 50px;
+        }
+
+        h3 {
+            font-size: 1.6em; /* Size for new subheadings */
+            color: var(--off-black-ink);
+            text-shadow: 0 0 5px rgba(0,0,0,0.2);
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .char-info {
+            background-color: var(--parchment-shade); /* Slightly different shade for this section */
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px auto;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--parchment-edge-shadow);
+            color: var(--off-black-ink);
+            text-align: left; /* Align character info text left */
+        }
+
+        .char-info ul {
+            list-style: none; /* No default bullets */
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .char-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: baseline;
+            line-height: 1.5;
+        }
+        
+        .char-info li strong {
+            color: var(--deep-burgundy); /* Red for categories */
+            font-family: 'Cinzel', serif;
+            font-size: 1.05em;
+            margin-right: 8px; /* Space between key and value */
+            flex-shrink: 0; /* Prevent "strong" from shrinking */
+            min-width: 80px; /* Give it a minimum width for alignment */
+        }
+
+        .char-info li span {
+            color: var(--off-black-ink); /* Regular text color for values */
+            font-family: 'Old Standard TT', serif;
+            flex-grow: 1;
+        }
+
+        hr.section-divider {
+            border: none;
+            border-top: 1px dashed var(--parchment-edge-shadow);
+            margin: 30px auto;
+            width: 80%;
+            opacity: 0.7;
+        }
+
+        p {
+            margin-bottom: 25px;
+            text-align: justify;
+            text-indent: 40px; /* More pronounced indent for parchment text */
+            z-index: 1;
+            position: relative;
+            font-size: 1.15em; /* Slightly larger for readability */
+            line-height: 1.9;
+            color: var(--off-black-ink); /* Dark ink color */
+            font-family: 'Old Standard TT', serif; /* A more classic serif for body text */
+            hyphens: auto; /* Helps with justification on parchment */
+        }
+
+        .indent {
+            margin-left: 60px; /* Deeper indent for emphasized paragraphs */
+        }
+
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+            font-style: italic;
+            color: var(--light-sepia-ink);
+            font-size: 1.3em;
+            text-shadow: 0 0 2px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            display: block;
+            margin-top: 10px;
+            font-size: 1em;
+            color: var(--pale-gold); /* A highlight for titles in signature */
+            font-weight: bold;
+        }
+
+        strong {
+            color: var(--deep-burgundy); /* Emphasized words in rich blood red */
+            text-shadow: 0 0 3px rgba(123, 15, 15, 0.3);
+        }
+
+        em {
+            color: var(--parchment-edge-shadow); /* A contrast color */
+            font-weight: bold;
+            font-style: normal; /* Preserve italics where used for stylistic effect, otherwise normalize */
+        }
+
+        .action-button {
+            display: block;
+            width: fit-content;
+            margin: 60px auto 30px auto;
+            padding: 18px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3em;
+            letter-spacing: 2px;
+            color: var(--pale-gold);
+            background-color: var(--deep-burgundy);
+            border: 2px solid var(--pale-gold);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(95, 15, 15, 0.7), 0 0 10px rgba(199, 167, 110, 0.4) inset;
+            text-transform: uppercase;
+            animation: pulse-button 2.5s infinite alternate ease-in-out;
+            position: relative;
+            z-index: 10;
+        }
+
+        .action-button:hover {
+            background-color: var(--pale-gold);
+            color: var(--dark-abyss); /* Changed to abyss for stronger contrast */
+            border-color: var(--deep-burgundy);
+            box-shadow: 0 0 35px var(--pale-gold), inset 0 0 18px rgba(123, 15, 15, 0.9);
+            transform: translateY(-5px) scale(1.03);
+            animation: none;
+        }
+
+        @keyframes pulse-button {
+            0% { box-shadow: 0 0 20px rgba(95, 15, 15, 0.7), 0 0 10px rgba(199, 167, 110, 0.4) inset; }
+            50% { box-shadow: 0 0 30px rgba(95, 15, 15, 0.9), 0 0 18px rgba(199, 167, 110, 0.7) inset; }
+            100% { box-shadow: 0 0 20px rgba(95, 15, 15, 0.7), 0 0 10px rgba(199, 167, 110, 0.4) inset; }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: var(--black-overlay); 
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px) brightness(0.6);
+            animation: modalFadeIn 0.4s forwards;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--modal-bg); /* Darker, like a heavy tomb slab or bound book */
+            margin: auto;
+            padding: 45px;
+            border: 2px solid var(--pale-gold);
+            width: 80%;
+            max-width: 550px;
+            box-shadow: 0 0 50px rgba(199, 167, 110, 0.7), inset 0 0 25px rgba(123, 15, 15, 0.6);
+            border-radius: 12px;
+            position: relative;
+            text-align: center;
+            animation: modalSlideIn 0.6s forwards, glow-modal 3s infinite alternate ease-in-out;
+            color: var(--off-white);
+            font-family: 'Crimson Pro', serif;
+            transform-origin: center;
+            opacity: 0; /* Start hidden for animation */
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-100px) scale(0.7); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        @keyframes glow-modal {
+            0% { border-color: var(--pale-gold); box-shadow: 0 0 50px rgba(199, 167, 110, 0.7), inset 0 0 25px rgba(123, 15, 15, 0.6); }
+            50% { border-color: var(--deep-burgundy); box-shadow: 0 0 70px rgba(199, 167, 110, 1), inset 0 0 30px rgba(123, 15, 15, 0.8); }
+            100% { border-color: var(--pale-gold); box-shadow: 0 0 50px rgba(199, 167, 110, 0.7), inset 0 0 25px rgba(123, 15, 15, 0.6); }
+        }
+
+        .close-button {
+            color: var(--pale-gold);
+            font-size: 38px; /* Slightly larger */
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--deep-burgundy);
+            transform: scale(1.3) rotate(15deg); /* More dramatic */
+            text-decoration: none;
+        }
+
+        .modal-content h3 {
+            font-size: 2.5em; /* Larger, more imposing */
+            margin-bottom: 35px;
+            color: var(--pale-gold);
+            text-shadow: 0 0 15px rgba(220, 190, 140, 0.7), 0 0 7px var(--deep-burgundy);
+            letter-spacing: 1px;
+        }
+
+        .login-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            color: var(--light-grey);
+            margin-top: 20px;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: calc(100% - 28px); /* Account for padding */
+            padding: 16px 12px;
+            margin-bottom: 28px;
+            border: 1px solid var(--input-border);
+            background-color: var(--dark-abyss); /* Use darker abyss */
+            color: var(--off-white);
+            border-radius: 6px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: inset 0 0 7px rgba(0,0,0,0.7);
+        }
+
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: var(--pale-gold);
+            box-shadow: 0 0 12px rgba(199, 167, 110, 0.6), inset 0 0 10px rgba(123, 15, 15, 0.4);
+            outline: none;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.4em;
+            letter-spacing: 2px;
+            color: var(--dark-abyss); /* Button text color */
+            background-color: var(--pale-gold);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 20px rgba(199, 167, 110, 0.6);
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .login-form button:hover {
+            background-color: var(--button-hover-gold);
+            color: var(--deep-burgundy);
+            box-shadow: 0 0 30px var(--button-hover-gold), inset 0 0 12px var(--deep-burgundy);
+            transform: translateY(-3px);
+        }
+
+        #loginMessage {
+            margin-top: 25px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1em;
+            color: var(--off-white);
+            min-height: 25px; /* To prevent layout shift */
+        }
+        #loginMessage.error { color: var(--error-red); }
+        #loginMessage.success { color: var(--success-green); }
+
+        .hidden-content {
+            display: none; /* Hidden by default */
+            margin-top: 50px;
+            padding: 25px;
+            border-top: 2px dashed var(--deep-burgundy); /* Darker dashed line for emphasis */
+            animation: fadeIn 1.5s ease-out;
+            color: var(--light-sepia-ink); /* Consistency with other text */
+            font-style: italic;
+        }
+        .hidden-content p {
+            font-style: normal;
+            font-size: 1.1em;
+            text-indent: 0;
+            line-height: 1.7;
+        }
+        .hidden-content h3 {
+            font-size: 1.8em;
+            color: var(--pale-gold); /* Golder heading */
+            margin-bottom: 25px;
+            text-shadow: 0 0 8px rgba(220, 190, 140, 0.4);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .container {
+                width: calc(100% - 40px);
+                margin: 40px 20px;
+                padding: 40px 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 40px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.7em;
+            }
+            p {
+                font-size: 1.05em;
+                text-indent: 30px;
+            }
+            .indent {
+                margin-left: 30px;
+            }
+            .modal-content {
+                width: 90%;
+                padding: 30px;
+            }
+            .action-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+            .char-info li strong {
+                min-width: 70px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 10px; } /* Less padding on very small screens */
+            .container {
+                padding: 20px 25px;
+                margin: 20px auto;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            p {
+                font-size: 0.95em;
+                text-indent: 20px;
+            }
+            .indent {
+                margin-left: 20px;
+            }
+            .modal-content {
+                padding: 20px;
+            }
+            .modal-content h3 {
+                font-size: 1.8em;
+            }
+            .login-form label, .login-form input, .login-form button {
+                font-size: 0.95em;
+                padding: 10px;
+            }
+            .char-info li strong {
+                min-width: auto; /* Remove min-width to allow wrapping if necessary */
+            }
+            .char-info li {
+                flex-direction: column; /* Stack key-value pairs vertically */
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .char-info li span {
+                margin-top: 3px;
+                padding-left: 10px; /* Indent the value */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="mainTitle">La Proclamation de Daeryn Sangvyr</h1>
+        <h2>Chroniques du Retour Inéluctable</h2>
+
+        <p>Aux membres survivants du Conseil de ma famille, les Sangvyr, et à ceux que mon nom trouble les songes, la nuit...</p>
+
+        <!-- Nouveau contenu ici -->
+        <h3>I. Le Règne des Ténèbres</h3>
+        <p>Il fut un temps où la maison Sangvyr inspirait crainte et respect. Cette puissance, cette emprise sur les destins ce fut moi, <strong>Daeryn Sangvyr</strong>, que l’on nommait jadis l’<strong>Étreinte Noire</strong>, qui l’avais bâtie de mes propres mains, avec une vision forgée dans les profondeurs de ma jeunesse. Pendant près de deux siècles, j'imposai mon autorité comme la nuit éternelle s’impose au soleil couchant. je fis des Sangvyr une lignée Que Nul n’osait défier notre volonté ; nul n’osait seulement nous contrarier.</p>
+        <p>Mais le poids des siècles use les plus grands empires, les plus grandes volontés. Des trahisons subtiles,rongèrent peu à peu ma maison, tel un ver dans le cœur d’un fruit. Fatigué de devoir combattre sans cesse mes propres descendants, je pris une décision alors incomprise. Je me retirai, me plongeant dans un sommeil volontaire, au cœur des cryptes des Sangvyr,Là je dormis près de deux cents ans, persuadé que le temps seul purifierait ma lignée de ses faiblesses mortelles.</p>
+
+        <h3>II. L’Héritage Abîmé</h3>
+        <p>À mon réveil, Daeryn, le Patriarche des ombres, découvrit une vérité plus cruelle que les légendes les plus sombres : sans moi, la maison Sangvyr avait décliné et frôlé l'extinction. Les trahisons avaient gagné, les richesses que j’avais accumulées par des guerres et des alliances avaient été volées par des chacals sans honneur. Pire encore, les chefs de clan qui s'étaient succédé après mon retrait étaient morts assassinés, victimes de leur propre incompétence et des complots fait par les faibles qui profitaient de mon absence. Seuls deux enfants, des âmes jeunes et farouches, avaient survécu à ce massacre : <strong>Kael et Veyrion Sangvyr</strong>, orphelins livrés à la misère et aux prédateurs, errant de ville en ville comme de vulgaires proies traquées. Mon sang avait été souillé, mon héritage piétiné.</p>
+        <p> je n'intervins pas. J'observai de loin leur survie précaire. Je vis leur force brute, leur pouvoir naissant et la rage qui les animait. Je reconnus dans leur sang la choses que j’avais moi-même tissés, la flamme ancestrale qui persistait en eux. Mais je vis aussi la souffrance profonde, les cicatrices qui marquaient leur corps et leur âme, et la colère noire qui menaçait de les consumer entièrement. Quand les deux jeunes, poussés par les tourments du destin, furent capturés par un duc arrogant et envoyés à la si renommée <em>Académie Wendelhart</em>, je compris que mon rôle de patriarche n’était pas terminé. Le temps était venu de briser les chaînes du sommeil, de reprendre mon dû.</p>
+
+        <h3>III. Le Retour de l’Ombre</h3>
+        <p>Ce fut alors que je sortis définitivement de ma crypte millénaire. Pour la plupart, je n’étais qu’une légende revenue de la tombe, un fantôme d’encre et de sang matérialisé. Pour <strong>Kael et Veyrion</strong>, je fus d'abord une ombre, une présence qui planait sans jamais réellement s'incarner. Je ne me suis pas révélé dans un éclat de gloiree, mais comme une force, patiente et nécessaire.</p>
+        <p>Sous ma tutelle silencieuse, puis mon enseignement direct, <strong>Kael</strong> gagna en maîtrise de soi et en assurance. <strong>Veyrion</strong>, lui, montrait une puissance brute, presque incontrôlable, un pouvoir électrique et instinctif d'une magnificence rare, un grand potentiel. Je voyais en eux deux héritiers aux destins différents mais entrelacés : l’un façonné avec sagesse pour diriger la famille vers un renouveau durable, l’autre voué à une brillance éclatante, presque destructrice.</p>
+
+        <h3>IV. La Disparition de Veyrion</h3>
+        <p>Mais un soir fatidique, au faîte de notre restauration naissante, tout bascula. <strong>Veyrion disparut.</strong></p>
+        <p>Pas de trace. Pas le moindre cadavre, pas de piste claire qui puisse indiquer sa fin ou sa fuite. Seule une fine odeur de cendres imprégnait la pièce qu’il occupait, comme si son essence même avait menacé de s’enflammer. Officiellement, nul ne sut jamais ce qu’il advint de lui. Kael fut dévoré par le chagrin et la rage.</p>
+        <p>Mais je le jure par le sang de notre lignée : <strong>Seul Daeryn connaît la vérité.</strong></p>
+        <p><strong>Veyrion</strong> avait découvert, par un hasard des plus funestes, un fragment interdit des anciens pactes de sang. Une puissance d'une telle ampleur qu'elle menaçait de consumer son esprit, une force trop grande pour être contrôlée, même par un vampire de mon âge avancé. Craignant que mon petit-neveu ne sombre dans une folie totale, attirant sur la famille Sangvyr des ennemis primordiaux que nous n’étions pas encore prêts à affronter, j'ai fait un choix. Un choix cruel, mais nécessaire pour la survie de tout notre sang : j'ai scellé Veyrion. Je l'ai emprisonné dans une prison de sang, un endroit dont l'existence même est un secret, un lieu que moi seul connais, pour que nul ne puisse y trouver ni danger ni délivrance.</p>
+        <p>Pour le monde, Veyrion a disparu à jamais, victime du destin. Pour Kael, son frère aimé s'est envolé, une perte inexpliquée. Seul moi porte le fardeau de ce terrible savoir.</p>
+
+        <h3>V. Le Dernier Serment</h3>
+        <p>Désormais, <strong>Daeryn</strong> est de retour, pleinement et irrévocablement. Je n’occupe peut-être plus le titre de "chef de nom" aux yeux des mortels, mais je reste <strong>chef de fait</strong>Je guide <strong>Kael</strong>, je l’entraîne sans relâche, je l’élève à devenir bien plus qu’un simple héritier : un symbole vivant de la renaissance Sangvyr. Mais la force, l'honneur et l'ambition, par eux-mêmes, ne suffisent pas à plier l'histoire.</p>
+        <p class="indent">Pourtant, dans mes cryptes, une pensée me hante à chaque crépuscule. Car le destin ne s'arrête jamais. Le jour où <strong>Il se réveillera</strong> de son long et forcé sommeil, l'histoire l'exigera et je devrais choisir. Choisir entre ce qu'il est destiné à devenir... ou ce que son réveil engendrera. Choisir entre un Sauveur... ou une malédiction éternelle. L'heure de mon jugement viendra, mais jusqu'à elle, le Sangvyr doit se relever, coûte que coûte.</p>
+        <!-- Fin du nouveau contenu -->
+
+        <div class="signature">
+            Que la Nuit Éternelle vous guide... ou vous dévore.<br>
+            <strong>Daeryn Sangvyr</strong><br>
+            <span class="title">Patriarche Éternel, Souverain Par Le Sang</span>
+        </div>
+
+        <div class="char-info">
+            <h3>Informations Générales</h3>
+            <ul>
+                <li><strong>Nom :</strong> <span>Daeryn Sangvyr</span></li>
+                <li><strong>Type :</strong> <span>Vampire Originel</span></li>
+                <li><strong>Ailes :</strong> <span>Noire</span></li>
+                <li><strong>Âge :</strong> <span>235 ans</span></li>
+                <li><strong>Taille :</strong> <span>1m98</span></li>
+                <li><strong>Cheveux :</strong> <span>Noirs corbeau mèches argentées</span></li>
+                <li><strong>Yeux :</strong> <span>Or Sombre</span></li>
+                <li><strong>Particularités :</strong> <span>Arbore un pendentif ancien forgé dans le sang, symbole de son règne passé.</span></li>
+            </ul>
+
+            <hr class="section-divider">
+
+            <h3>Personnalité</h3>
+            <ul>
+                <li><strong>Autoritaire :</strong> <span>Habitué à être obéit il fait en sorte d'être le plus autoritaire.</span></li>
+                <li><strong>Protecteur :</strong> <span>Bien qu’impitoyable, il veille jalousement sur le sang de sa lignée.</span></li>
+                <li><strong>Déterminé :</strong> <span>rien ne l’arrête, ni la douleur ni les échecs.</span></li>
+            </ul>
+
+            <hr class="section-divider">
+
+            <h3>Ambitions</h3>
+            <ul>
+                <li><span>Restaurer la grandeur et la gloire de la Maison Sangvyr.</span></li>
+                <li><span>Former et façonner une nouvelle génération d’héritiers dignes du nom Sangvyr.</span></li>
+                <li><span>Purger la lignée des traîtres et des faibles qui l’ont déshonorée.</span></li>
+            </ul>
+        </div>
+
+        <button class="action-button" id="openLoginModal">Accéder au Sanctuaire Intérieur du Conseil</button>
+        
+        <!-- Hidden content revealed after successful login -->
+        <div id="hiddenCouncilContent" class="hidden-content">
+            <h3>Les Murmures de l'Ombre : Sceaux Brisés</h3>
+            <p>Mon conseil était une façade pour le monde extérieur, une élégante diversion. En réalité, le Conseil n'est que l'antichambre des vrais décideurs, des porteurs du savoir ancestral. À présent que les sceaux sont rompus, vous comprendrez l'ampleur de mes siècles d'observation. Les nouvelles lignées oublient la sagesse des abysses, la source véritable de notre puissance. J'ai sondé les gouffres de l'ésotérique et noué des liens avec des puissances que vous ne soupçonnez même pas.</p>
+            <p>Mon retour n'est pas une suggestion, mais une restauration de l'ordre primordial. La famille a besoin de la main qui a tordu les âges, de l'œil qui a vu la naissance et la mort de dieux mineurs. Levez-vous, car l'heure de la véritable autorité est revenue, et je suis cette heure.</p>
+        </div>
+    </div>
+
+    <!-- The Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3>Sceaux de Sang : Accès Restreint</h3>
+            <form class="login-form" id="loginForm">
+                <label for="vampireName">Nom de Sang / Ancien Sceau :</label>
+                <input type="text" id="vampireName" name="vampireName" required placeholder="Votre nom Sangvyr ou le sceau antique...">
+                
+                <label for="allegianceCode">Code d'Allégeance / Mot de Passe Écarlate :</label>
+                <input type="password" id="allegianceCode" name="allegianceCode" required placeholder="Le code scellé dans le sang...">
+                
+                <p id="loginMessage"></p>
+                <button type="submit">Entrer et Invoquer l'Accès</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        var modal = document.getElementById("loginModal");
+        var btn = document.getElementById("openLoginModal");
+        var closeSpan = document.getElementsByClassName("close-button")[0];
+        var loginForm = document.getElementById("loginForm");
+        var loginMessage = document.getElementById("loginMessage");
+        var hiddenContent = document.getElementById("hiddenCouncilContent");
+        var mainTitle = document.getElementById("mainTitle");
+        const originalMainTitleText = mainTitle.textContent; // Store original title for typewriter effect
+
+        // Typewriter effect function
+        function applyTypewriterEffect(element, text, speed = 70) {
+            let i = 0;
+            element.textContent = ''; // Clear text
+            element.style.animation = 'none'; // Stop CSS animation before starting typewriter
+            
+            // Add blinking cursor effect dynamically with JS
+            element.style.borderRight = '2px solid var(--pale-gold)'; 
+
+            function typeChar() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeChar, speed);
+                } else {
+                    element.style.borderRightColor = 'transparent'; // Hide cursor
+                    element.style.animation = 'text-glow-dark 2s infinite alternate ease-in-out'; // Restart glowing
+                }
+            }
+            typeChar();
+        }
+
+        // Event listeners
+        btn.onclick = function() {
+            modal.classList.add('active');
+            loginForm.reset();
+            loginMessage.textContent = '';
+            loginMessage.className = '';
+        }
+
+        closeSpan.onclick = function() {
+            closeModal();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        loginForm.onsubmit = function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById('vampireName').value;
+            const password = document.getElementById('allegianceCode').value;
+
+            // --- FAKE AUTHENTICATION LOGIC ---
+            // Correct credentials are tied to Daeryn
+            const correctUsername = "Daeryn"; 
+            const correctPassword = "AnimaNocturna"; // Meaning "Soul of the Night" in Latin
+            
+            if (username === correctUsername && password === correctPassword) {
+                loginMessage.textContent = "Accès Concéder. Bienvenue au sein des Anciens Secrets.";
+                loginMessage.className = 'success';
+                setTimeout(() => {
+                    closeModal();
+                    hiddenContent.style.display = 'block';
+                    btn.textContent = "Consulter les Écrits Scellés"; // Change button text
+                    btn.classList.add('accessed'); 
+                    btn.style.animation = 'none'; // Stop pulsing after access
+                    // Update login fields placeholder as well after success for persistence
+                    document.getElementById('vampireName').placeholder = 'Authentifié : Daeryn';
+                    document.getElementById('allegianceCode').placeholder = 'Accès Vérifié';
+
+                }, 1500); 
+            } else {
+                loginMessage.textContent = "Sceaux incorrects. Votre sang n'est pas le nôtre. Retentez...";
+                loginMessage.className = 'error';
+                // Add a shake effect to the modal for error
+                modal.querySelector('.modal-content').animate([
+                    { transform: 'translateX(0px)' },
+                    { transform: 'translateX(-10px)' }, 
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(0px)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-in-out'
+                });
+            }
+        };
+
+        // Apply typewriter effect on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTypewriterEffect(mainTitle, originalMainTitleText);
+        });
+    </script>
+    <!-- Ajoute ça dans le <body>, avant la fin -->
+<audio id="bgMusic" loop>
+  <source src="ta-musique.mp3" type="audio/mpeg">
+  Ton navigateur ne supporte pas l’audio HTML5.
+</audio>
+
+<script>
+  const button = document.getElementById("openLoginModal");
+  const music = document.getElementById("bgMusic");
+
+  button.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+    }
+  });
+</script>
+
+</body>
+</html>
